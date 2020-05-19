@@ -1,7 +1,7 @@
 # php_laravel_curso_styde
 Php Laravel Curso Styde
 
-Lesson 1
+Lesson N° 3 - Rutas
 
 $ php composer.phar
 
@@ -27,7 +27,7 @@ Then, we have to make sure that the environment variable PATH of the operating s
 
 $ create-proyect laravel/laravel curso "X.X"
 
-Lesson 2
+Lesson 4° - Pruebas
 
 $ vendor/bin/phpunit
 
@@ -36,6 +36,24 @@ $ alias t=vendor/bin/phpunit
 $ php artisan make:test UsersModuleTest
 
 $ php artisan make:test WelcomeUsersTest
+
+Lesson °5 -Controladores
+
+$ php artisan make:controller UserController
+
+(The application logs can be viewed at: "storage/logs/laravel.log")
+
+(In order for the Test to show errors, you can insert the following instruction in the respective method)
+
+$this->withoutExceptionHandling();
+
+$ php artisan make:controller WelcomeUserController
+
+
+
+
+
+
 
 
 
