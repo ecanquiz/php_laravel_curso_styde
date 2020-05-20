@@ -8,7 +8,38 @@ class UserController extends Controller
 {
     public function index()
     {
-        return 'Usuarios';
+
+        $users = [
+            'Joel',
+            'Ellie',
+            'Tess',
+            'Tommy',
+            'Byll',
+            '<script>alert("Clicker")</script>'
+        ];
+
+        $title = 'Listado de usuarios';
+
+
+
+        /*return view('users', [
+            'users' => $users,
+            'title' => 'Listado de usuarios'
+        ]);*/
+
+        /*return view('users')->with([
+            'users' => $users,
+            'title' => 'Listado de usuarios'
+        ]);*/
+
+        /*return view('users')
+            ->with( 'users', $users)
+            ->with( 'title', 'Listado de usuarios');*/
+
+        //dd(compact('title','users'));
+
+        return view('users', compact('title','users'));
+
     }
 
     public function show($id)
