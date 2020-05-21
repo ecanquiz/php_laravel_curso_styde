@@ -49,6 +49,10 @@ $this->withoutExceptionHandling();
 
 $ php artisan make:controller WelcomeUserController
 
+Lesson °7 - Blade
+
+$ php artisan view:clear (Clear cache of compiled blade views)
+
 
 
 
