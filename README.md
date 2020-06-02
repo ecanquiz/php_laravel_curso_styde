@@ -53,6 +53,20 @@ Lesson °7 - Blade
 
 $ php artisan view:clear (Clear cache of compiled blade views)
 
+Lesson °10 - Modify existing tables with Laravel migrations
+
+$ php artisan migrate:reset
+
+$ php artisan migrate:refresh
+
+$ php artisan migrate:rollback
+
+
+
+
+
+
+
 
 
 
