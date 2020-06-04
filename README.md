@@ -61,6 +61,32 @@ $ php artisan migrate:refresh
 
 $ php artisan migrate:rollback
 
+Lesson °11 - Create and associate tables using Laravel migrations (with foreign keys)
+
+$ php artisan make:migration create_professions_table
+
+Another option is:
+
+$ php artisan make:migration new_professions_table --create=professions
+
+$ php artisan make:migration add_profession_id_to_users
+
+(From Laravel 5.5, to drop all tables and create all migrations from zero )
+
+$ php artisan migrate:fresh 
+
+(Warning: If you are in the production environment, Laravel warns and asks before if you really want to run that).
+
+(Another thing: For those who have problems creating the foreign keys in the new versions of Laravel, use or change the function unsignedInteger () by unsignedBigInteger ()).
+
+
+
+
+
+
+
+
+
 
 
 
