@@ -79,21 +79,17 @@ $ php artisan migrate:fresh
 
 (Another thing: For those who have problems creating the foreign keys in the new versions of Laravel, use or change the function unsignedInteger () by unsignedBigInteger ()).
 
+Lesson 12 - Inserting data with Laravel seeders
 
+$ php artisan make:seeder ProfessionSeeder
 
+$ php artisan db:seed
 
+$ php artisan make:seeder UserSeeder
 
+$ php artisan migrate:refresh --seed
 
-
-
-
-
-
-
-
-
-
-
+$ php artisan migrate:fresh --seed
 
 
 
