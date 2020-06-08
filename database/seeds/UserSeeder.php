@@ -12,11 +12,54 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
+        //$professions = DB::select('SELECT id FROM professions WHERE title = ?', ['Desarrollador back-end']);
+        //$professions = DB::table('professions')->select('id')->take(1)->get();
+
+        //$profession = DB::table('professions')->select('id')->first();
+        //$professions = DB::table('professions')->select('id')->where('title', '=', 'Desarrollador back-end')->first();
+
+        //$profession = DB::table('professions')->select('id', 'title')->where('title', '=', 'Desarrollador back-end')->first();
+
+        //$profession = DB::table('professions')->where('title', '=', 'Desarrollador back-end')->first();
+        //$profession = DB::table('professions')->where('title', 'Desarrollador back-end')->first();
+
+        //$profession = DB::table('professions')->where(['title' => 'Desarrollador back-end'])->first();
+
+        //dd($profession);
+        //dd($professions[0]);
+        //dd($professions->first()); // $professions[0]
+
+        //$profession = DB::table('professions')
+        //   ->select('id')
+        //    ->where('title', 'Desarrollador back-end')
+        //    ->first();
+        //dd($profession);
+
+        //$professionId = DB::table('professions')
+        //    ->where(['title' => 'Desarrollador back-end'])
+        //    ->value('id');
+
+        //$professionId = DB::table('professions')
+        //    ->where('title' , 'Desarrollador back-end')
+        //    ->value('id');
+
+        //$professionId = DB::table('professions')
+        //    ->whereTitle('Desarrollador back-end')
+        //    ->value('id');
+
+        //dd($professionId);
+
         DB::table('users')->insert([
             'name' => 'Ernesto Canquiz',
             'email' => 'cumacos@gmail.com',
             'password' => bcrypt('123456'),
-            'profession_id' => 1
+            'profession_id' => DB::table('professions')
+                ->whereTitle('Desarrollador back-end')
+                ->value('id')
+            //'profession_id' => $professionId
+            //'profession_id' => $profession->id
+            //'profession_id' => $professions->first()->id
+            //'profession_id' => $professions[0]->id
         ]);
     }
 }

@@ -16,14 +16,9 @@ class DatabaseSeeder extends Seeder
             'professions'
         ]);
 
-        //DB::statement('SET FOREIGN_KEY_CHECKS = 0;');
-        //DB::table('professions')->truncate();
-        //DB::statement('SET FOREIGN_KEY_CHECKS = 0;');
-
-        //$this->call(UsersTableSeeder::class);
-
-        $this->call(UserSeeder::class);
         $this->call(ProfessionSeeder::class);
+        $this->call(UserSeeder::class);
+
     }
 
     protected function truncateTables(array $tables)
