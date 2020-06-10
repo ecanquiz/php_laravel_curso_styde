@@ -91,6 +91,35 @@ $ php artisan migrate:refresh --seed
 
 $ php artisan migrate:fresh --seed
 
+Lesson 13 - Introduction to Eloquent, the ORM of the Laravel framework
+
+$ php artisan make:model Profession
+
+$ php artisan db:seed
+
+$ php artisan make:model Models/Profession
+
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Profession extends Model
+{
+
+    //protected $table = 'my_professions';
+
+    //public $timestamps = false;
+
+}
+
+
+
+
+
+
+
 
 
 

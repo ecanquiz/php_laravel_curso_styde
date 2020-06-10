@@ -2,6 +2,9 @@
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use App\Models\Profession;
+use App\Models\User;
+
 
 class UserSeeder extends Seeder
 {
@@ -49,7 +52,7 @@ class UserSeeder extends Seeder
 
         //dd($professionId);
 
-        DB::table('users')->insert([
+        /*DB::table('users')->insert([
             'name' => 'Ernesto Canquiz',
             'email' => 'cumacos@gmail.com',
             'password' => bcrypt('123456'),
@@ -60,7 +63,24 @@ class UserSeeder extends Seeder
             //'profession_id' => $profession->id
             //'profession_id' => $professions->first()->id
             //'profession_id' => $professions[0]->id
+        ]);*/
+
+        /*User::create([
+            'name' => 'Ernesto Canquiz',
+            'email' => 'cumacos@gmail.com',
+            'password' => bcrypt('123456'),
+            'profession_id' => DB::table('professions')
+                ->whereTitle('Desarrollador back-end')
+                ->value('id')
+        ]);*/
+
+        User::create([
+            'name' => 'Ernesto Canquiz',
+            'email' => 'cumacos@gmail.com',
+            'password' => bcrypt('123456'),
+            'profession_id' => Profession::whereTitle('Desarrollador back-end')->value('id')
         ]);
+
     }
 }
 
