@@ -114,6 +114,143 @@ class Profession extends Model
 
 }
 
+Lesson 14 - Introduction to Eloquent, the ORM of the Laravel framework
+
+Lesson 15 - Using Eloquent ORM interactively with Tinker
+
+$ php artisan tinker
+
+If tinker is giving you error regarding a class call, you can try with:
+
+$ composer dump-autoload
+
+->>> use App\Models\Profession;
+
+->>> $professions=Profession::all();
+
+->>> $professions;
+
+->>> $professions->first();
+
+->>> $professions->last();
+
+->>> $professions->random(2);
+
+->>> $professions->pluck('title');
+
+(Larave's collections are immutable)
+
+->>> $professions;
+
+->>> $titles = $professions->pluck('title');
+
+->>> $titles;
+
+->>> $professions;
+
+->>> $randomProfessions = $professions->random(2);
+
+->>> $randomProfessions;
+
+->>> $professions;
+
+->>> collect(['Ernesto', 'Canquiz', 'Laravel']);
+
+->>> $backendDeveloper = Profession::where('title', 'Desarrollador back-end')->first();
+
+->>> DB::table('professions')->where('title', 'Desarrollador back-end')->first();
+
+->>> use App\Models\User;
+
+->>> $user = User::first();
+
+->>> $user = User::find(1);
+
+Declaring non-static methods:
+
+<?php
+
+class User extends Authenticatable
+
+{
+
+    public function isAdmin()
+    {
+        return $this->email === 'myemail@domain.ext';
+    }
+
+->>> exit
+
+$ php artisan tinker
+
+->>> use App\Models\User;
+
+->>> $user = User::first();
+
+->>> $user = User::find(1);
+
+->>> $user->isAdmin();
+
+->>> $anotherUser = User::create(['name' => 'Another user', 'email' => 'another@user.com', 'password' => bcrypt(123456)]);
+
+Declaring static methods:
+
+<?php
+
+class User extends Authenticatable
+
+{
+
+    public static function findByEmail($email)
+    {
+        return static::where(compact('email'))->first();
+    }
+
+->>> User::findByEmail('myemail@domain.ext');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

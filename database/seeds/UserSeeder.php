@@ -81,6 +81,16 @@ class UserSeeder extends Seeder
             'profession_id' => Profession::whereTitle('Desarrollador back-end')->value('id')
         ]);
 
+        User::create([
+            'name' => 'Another user',
+            'email' => 'another@user.com',
+            'password' => bcrypt('123456'),
+            'profession_id' => Profession::whereTitle('Desarrollador front-end')->value('id')
+        ]);
+
+
+
+
     }
 }
 
