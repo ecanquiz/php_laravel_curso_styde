@@ -17,7 +17,7 @@ class AddProfessionIdToUsers extends Migration
             $table->dropColumn('profession');
             //$table->unsignedInteger('profession_id')->after('password'); //(it can also be done like this)
             //$table->integer('profession_id')->unsigned()->after('password'); // both options are valid
-            $table->integer('profession_id')->unsigned()->after('id');
+            $table->integer('profession_id')->unsigned()->default(1)->after('id');
             $table->foreign('profession_id')->references('id')->on('professions');
             
         });

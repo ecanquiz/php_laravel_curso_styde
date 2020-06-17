@@ -208,6 +208,42 @@ class User extends Authenticatable
 
 ->>> User::findByEmail('myemail@domain.ext');
 
+Lesson 16 - Attribute handling in Eloquent ORM (solution to MassAssignmentException)
+
+class MyClass extends Model {
+
+    protected $fillable = [
+
+        'field_name'
+
+    ];
+
+    protected $casts = [
+
+       'field_name' => 'field_type'
+
+    ];
+
+$ php artisan tinker
+
+->>> Use App\Models\Profession;
+
+->>> $data = ['title' => 'Profesor', 'id' => 10 ];
+
+->>> Profession::create($data);
+
+->>> $user->save();
+
+->>> $user->exists;
+
+->>> $user->delete();
+
+
+
+
+
+
+
 
 
 
