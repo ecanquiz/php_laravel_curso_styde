@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
+use App\Models\Profession;
+
 class User extends Authenticatable
 {
     use Notifiable;
@@ -36,10 +38,15 @@ class User extends Authenticatable
         return static::where(compact('email'))->first();
     }
 
-
+    public function profession() //profession + _id
+    {
+       //return $this->belongsTo(Profession::class, 'id_profession');
+       return $this->belongsTo(Profession::class);
+    }
 
     public function isAdmin()
     {
-        return $this->email === 'cumacos@gmail.com';
+        //return $this->email === 'cumacos@gmail.com';
+        return $this->is_admin;
     }
 }

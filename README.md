@@ -238,6 +238,88 @@ $ php artisan tinker
 
 ->>> $user->delete();
 
+Lesson 17 - Relationship management with the ORM Eloquent
+
+$ php artisan tinker
+
+use \App\Models\User;
+
+->>> $user = User::first();
+
+->>> $user->profession;
+
+->>> use \App\Models\Profession;
+
+->>> Profession::where('id', $user->profession_id)->first();
+
+->>> Profession::find($user->profession_id);
+
+use App\Models\Profession;
+
+class User extends Authenticatable
+
+{
+
+    public function profession()
+
+    {
+
+       return $this->belongsTo(Profession::class);
+
+    }
+
+->>> $user->profession;
+
+use App\Models\User;
+
+class Profession extends Model
+
+{
+
+    public function users()
+    {
+       return $this->hasMany(User::class);
+    }
+
+->>> $profession = Profession::first();
+
+->>> $profession->users;
+
+->>> $user->refresh();
+
+->>> $profession->refresh();
+
+->>> $user->profession;
+
+->>> $user->profession();
+
+->>> $profession->users;
+
+->>> $profession->users();
+
+->>> $profession->users()->where('is_admin',true)->get();
+
+->>> User::where(['profession_id' => 1, 'is_admin' => true])->get();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
