@@ -301,6 +301,71 @@ class Profession extends Model
 
 ->>> User::where(['profession_id' => 1, 'is_admin' => true])->get();
 
+Lesson 18 - Generate records using Model Factories in Laravel
+
+$ php artisan tinker
+
+->>> use \App\Models\User;
+
+->>> factory(User::class)->create();
+
+->>> use \App\Models\Profession;
+
+->>> factory(User::class)->create([
+
+    'profession_id' => Profession::whereTitle('Desarrollador front-end')->value('id')
+
+]);
+
+->>> factory(User::class)->([
+
+       'name' => 'Another user',
+
+       'email' => 'another@gmail.com',
+
+       'password' => bcrypt('123456'),
+
+       'profession_id' => Profession::whereTitle('Desarrollador front-end')->value('id')
+
+]);
+
+->>> factory(User::class)->([
+
+       'email' => 'another@gmail.com',
+
+       'password' => bcrypt('123456'),
+
+       'profession_id' => Profession::whereTitle('Desarrollador front-end')->value('id')
+
+]);
+
+$ php artisan make:factory ProfessionFactory
+
+$ php artisan help make:factory
+
+$ php artisan make:factory ProfessionFactory --model=Profession
+
+$ php artisan make:factory ProfessionFactory --model=Models/Profession
+
+$ php artisan help make:model
+
+$ php artisan make:model Skill -mf
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
