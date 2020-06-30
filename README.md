@@ -351,6 +351,17 @@ $ php artisan help make:model
 
 $ php artisan make:model Skill -mf
 
+Lesson 19 Users module with Laravel (Introuction)
+
+Lesson 20 Dynamic List of Users with Laravel (CRUD Module)
+
+$ php artisan migrate:fresh --seed
+
+$ vendor/bin/phpunit
+
+
+
+
 
 
 
