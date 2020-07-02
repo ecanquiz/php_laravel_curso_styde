@@ -371,6 +371,17 @@ $ php artisan config:clear
 
 $ vendor/bin/phpunit
 
+Lesson 22 - Details or User Profile with Laravel (CRUD Module)
+
+$ vendor/bin/phpunit
+
+$ vendor/bin/phpunit --filter it_displays_the_usuers_details
+
+
+
+
+
+
 
 
 

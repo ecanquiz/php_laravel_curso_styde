@@ -19,15 +19,16 @@ class UsersModuleTest extends TestCase
     {
 
         Profession::create([ 'title' => 'Desarrollador back-end' ]);
-        //$professionId = Profession::where('title', 'Desarrollador back-end')->value('id');
-        //factory(User::class)->create([ 'profession_id' => $professionId ]);
+        $professionId = Profession::where('title', 'Desarrollador back-end')->value('id');
 
         factory(User::class)->create([
-            'name' => 'Joel'
+            'name' => 'Joel',
+            'profession_id' => $professionId
         ]);
 
         factory(User::class)->create([
-            'name' => 'Ellie'
+            'name' => 'Ellie',
+            'profession_id' => $professionId
         ]);
 
         $this->get('/usuarios')
@@ -35,6 +36,7 @@ class UsersModuleTest extends TestCase
             ->assertSee('Listado de usuarios')
             ->assertSee('Joel')
             ->assertSee('Ellie');
+
     }
 
     /** @test */
@@ -49,11 +51,21 @@ class UsersModuleTest extends TestCase
     }
 
     /** @test */
-    public function it_loads_the_usuers_details_page()
+    public function it_displays_the_usuers_details()
     {
-        $this->get('/usuarios/5')
+        Profession::create([ 'title' => 'Desarrollador back-end' ]);
+        $professionId = Profession::where('title', 'Desarrollador back-end')->value('id');
+
+        $user = factory(User::class)->create([
+            'name' => 'Ernesto Canquiz',
+            'email' => 'cumacos@gmail.com',
+            'profession_id' => $professionId 
+        ]);
+
+        $this->get('/usuarios/' . $user->id)
             ->assertStatus(200)
-            ->assertSee('Mostrando detalles del usuario: 5');
+            ->assertSee('Ernesto Canquiz')
+            ->assertSee('cumacos@gmail.com');
     }
 
     /** @test */

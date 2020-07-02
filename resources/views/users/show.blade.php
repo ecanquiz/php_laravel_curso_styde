@@ -1,9 +1,9 @@
 @extends('layout')
 
-@section('title', "Usuario {$id}")
+@section('title', "Usuario {$user->name}")
 
 @section('content')
-    <h1>Usuario #{{ $id }}</h1>
-            Mostrando detalles del usuario: {{ $id }}
+    <h1>Usuario #{{ $user->id }}</h1>
+    <p>Nombre del usuario: {{ $user->name }}</p>
+    <p>Correo electrónico: {{ $user->email }}</p>
 @endsection
-
