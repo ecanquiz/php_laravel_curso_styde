@@ -69,6 +69,15 @@ class UsersModuleTest extends TestCase
     }
 
     /** @test */
+    public function it_displays_a_404_error_if_user_in_not_found()
+    {
+        $this->get('/usuarios/999')
+            ->assertStatus(404)
+            ->assertSee('Página no encontrada');
+    }
+
+
+    /** @test */
     public function it_loads_the_new_usuers_page()
     {
         //$this->withoutExceptionHandling();

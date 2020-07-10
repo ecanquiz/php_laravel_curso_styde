@@ -377,10 +377,15 @@ $ vendor/bin/phpunit
 
 $ vendor/bin/phpunit --filter it_displays_the_usuers_details
 
-
 Lesson 23 - Generate URLs in Laravel
 
-vendor/bin/phpunit
+$ vendor/bin/phpunit
+
+Lesson 24 - 404 error handling in Laravel
+
+$ vendor/bin/phpunit
+
+
 
 
 
