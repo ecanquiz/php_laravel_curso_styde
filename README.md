@@ -385,6 +385,12 @@ Lesson 24 - 404 error handling in Laravel
 
 $ vendor/bin/phpunit
 
+Lesson 25 - Link models to routes in Laravel
+
+$ vendor/bin/phpunit
+
+
+
 
 
 
