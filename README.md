@@ -389,6 +389,11 @@ Lesson 25 - Link models to routes in Laravel
 
 $ vendor/bin/phpunit
 
+Lesson 26 - Routes with POST and protection against CSRF attacks in Laravel
+
+$ php artisan route:list
+
+
 
 
 

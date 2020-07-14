@@ -18,4 +18,7 @@ Route::get('/usuarios/{user}', 'UserController@show')
 Route::get('/usuarios/nuevo', 'UserController@create')
     ->name('users.create');
 
+//Route::post('/usuarios/crear', 'UserController@store');
+Route::post('/usuarios', 'UserController@store');
+
 Route::get('/saludo/{name}/{mickname?}', 'WelcomeUserController');
