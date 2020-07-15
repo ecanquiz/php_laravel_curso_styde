@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 //use Illuminate\Support\Facades\DB;
+use App\Models\Profession;
 use App\Models\User;
 
 class UserController extends Controller
@@ -54,7 +55,15 @@ class UserController extends Controller
 
     public function store()
     {
-        return "Procesando Información...";
+        $data = request()->all();
+        $user = User::create([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => bcrypt($data['password'])
+            //'profession_id' => $data['profession_id']
+        ]);
+        //return redirect()->route('users.index');
+        return redirect('usuarios');
     }
 
 }

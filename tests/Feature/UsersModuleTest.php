@@ -84,7 +84,31 @@ class UsersModuleTest extends TestCase
 
         $this->get('/usuarios/nuevo')
             ->assertStatus(200)
-            ->assertSee('Creando nuevo usuario');
+            ->assertSee('Crear usuario');
+    }
+
+    /** @test */
+    public function it_creates_a_new_user()
+    {
+        $this->withoutExceptionHandling();
+        Profession::create([ 'title' => 'Desarrollador back-end' ]);
+        //$professionId = Profession::where('title', 'Desarrollador back-end')->value('id');
+        $this->post('/usuarios/',[
+            'name' => 'Ernesto Canquiz',
+            'email' => 'cumacos@gmail.com',
+            'password' => '123456'
+            //'profession_id' => $professionId
+        //])->assertRedirect(route('users.index'));
+        ])->assertRedirect('usuarios');
+        
+        $this->assertDatabaseHas('users', [
+        //$this->assertCredentials([
+            'name' => 'Ernesto Canquiz',
+            'email' => 'cumacos@gmail.com',
+            //'password' => '123456'
+            //'profession_id' => $professionId 
+        ]);
+
     }
 
 }
