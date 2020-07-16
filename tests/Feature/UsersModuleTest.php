@@ -18,17 +18,12 @@ class UsersModuleTest extends TestCase
     public function it_shows_the_usuers_list()
     {
 
-        Profession::create([ 'title' => 'Desarrollador back-end' ]);
-        $professionId = Profession::where('title', 'Desarrollador back-end')->value('id');
-
         factory(User::class)->create([
             'name' => 'Joel',
-            'profession_id' => $professionId
         ]);
 
         factory(User::class)->create([
             'name' => 'Ellie',
-            'profession_id' => $professionId
         ]);
 
         $this->get('/usuarios')
@@ -47,19 +42,15 @@ class UsersModuleTest extends TestCase
         $this->get('/usuarios')
             ->assertStatus(200)
             ->assertSee('No hay usuarios registrados');
-
     }
 
     /** @test */
     public function it_displays_the_usuers_details()
     {
-        Profession::create([ 'title' => 'Desarrollador back-end' ]);
-        $professionId = Profession::where('title', 'Desarrollador back-end')->value('id');
 
         $user = factory(User::class)->create([
             'name' => 'Ernesto Canquiz',
             'email' => 'cumacos@gmail.com',
-            'profession_id' => $professionId 
         ]);
 
         $this->get('/usuarios/' . $user->id)
@@ -90,23 +81,17 @@ class UsersModuleTest extends TestCase
     /** @test */
     public function it_creates_a_new_user()
     {
-        $this->withoutExceptionHandling();
-        Profession::create([ 'title' => 'Desarrollador back-end' ]);
-        //$professionId = Profession::where('title', 'Desarrollador back-end')->value('id');
+        //$this->withoutExceptionHandling();
+
         $this->post('/usuarios/',[
             'name' => 'Ernesto Canquiz',
             'email' => 'cumacos@gmail.com',
-            'password' => '123456'
-            //'profession_id' => $professionId
-        //])->assertRedirect(route('users.index'));
-        ])->assertRedirect('usuarios');
+            'password' => '123456'        
+        ])->assertRedirect('usuarios'); //])->assertRedirect(route('users.index'));
         
-        $this->assertDatabaseHas('users', [
-        //$this->assertCredentials([
+        $this->assertDatabaseHas('users', [  //$this->assertCredentials([
             'name' => 'Ernesto Canquiz',
             'email' => 'cumacos@gmail.com',
-            //'password' => '123456'
-            //'profession_id' => $professionId 
         ]);
 
     }

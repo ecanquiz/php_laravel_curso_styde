@@ -80,14 +80,14 @@ class UserSeeder extends Seeder
             'name' => 'Ernesto Canquiz',
             'email' => 'cumacos@gmail.com',
             'password' => bcrypt('123456'),
-            'profession_id' => Profession::whereTitle('Desarrollador back-end')->value('id')
+            //'profession_id' => Profession::whereTitle('Desarrollador back-end')->value('id')
         ]);
 
         User::create([
             'name' => 'Another user',
             'email' => 'another@user.com',
             'password' => bcrypt('123456'),
-            'profession_id' => Profession::whereTitle('Desarrollador front-end')->value('id')
+            //'profession_id' => Profession::whereTitle('Desarrollador front-end')->value('id')
         ]);
 
         /*factory(User::class)->([
@@ -115,12 +115,12 @@ class UserSeeder extends Seeder
 
         factory(User::class, 48)->create();*/
 
-        $professionId = Profession::where('title', 'Desarrollador back-end')->value('id');
+        //$professionId = Profession::where('title', 'Desarrollador back-end')->value('id');
 
 
-        factory(User::class)->create([
-            'profession_id' => $professionId
-        ]);
+        //factory(User::class)->create([
+        //    'profession_id' => $professionId
+        //]);
 
         factory(User::class, 48)->create();
 
