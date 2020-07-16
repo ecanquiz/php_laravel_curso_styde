@@ -56,13 +56,11 @@ class UserController extends Controller
     public function store()
     {
         $data = request()->all();
-        Profession::create([ 'title' => 'Desarrollador back-end' ]);
-        $professionId = Profession::where('title', 'Desarrollador back-end')->value('id');
+
         $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
-            'profession_id' => $professionId
         ]);
         //return redirect()->route('users.index');
         return redirect('usuarios');
