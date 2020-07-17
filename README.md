@@ -401,6 +401,14 @@ $ vendor/bin/phpunit
 
 Lesson 28 - Create form to add users with Laravel
 
+Lesson 29 - Validate HTTP request data with Laravel (TDD)
+
+$ vendor/bin/phpunit
+
+$ vendor/bin/phpunit --filter the_name_is_required
+
+
+
 
 
 

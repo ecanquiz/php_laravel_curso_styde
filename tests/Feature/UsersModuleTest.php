@@ -96,4 +96,30 @@ class UsersModuleTest extends TestCase
 
     }
 
+    /** @test */
+    public function the_name_is_required()
+    {
+
+//        $this->withoutExceptionHandling(); //This must be disabled for Laravel to validate exceptions.
+
+//        $this->post('/usuarios/',[
+        $this->from('/usuarios/nuevo')
+            ->post('/usuarios/',[
+                'name' => '',
+                'email' => 'cumacos@gmail.com',
+                'password' => '123456'        
+            ])
+            ->assertRedirect('usuarios/nuevo')
+            ->assertSessionHasErrors([//'name'
+                  'name'=>'El campo nombre es obligatorio'
+            ]);
+
+        $this->assertEquals(0, User::count());
+
+//        $this->assertDatabaseMissing('users', [
+//            'email' => 'cumacos@gmail.com'
+//        ]);
+        
+    }
+
 }
