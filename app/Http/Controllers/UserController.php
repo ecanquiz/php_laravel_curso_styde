@@ -56,6 +56,7 @@ class UserController extends Controller
     public function store()
     {
         $data = request()->all();
+        //$data = request()->only(['name', 'email', 'password']);
 
         $user = User::create([
             'name' => $data['name'],

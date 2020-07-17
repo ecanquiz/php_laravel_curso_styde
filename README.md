@@ -393,11 +393,15 @@ Lesson 26 - Routes with POST and protection against CSRF attacks in Laravel
 
 $ php artisan route:list
 
-Lesson 27 - Creación de usuarios con Laravel y TDD
+Lesson 27 - Creation of users with Laravel and TDD
 
 $ vendor/bin/phpunit
 
-It passes the last test when only that one is run but not all together.
+//It passes the last test when only that one is run but not all together. (Done, solved.)
+
+Lesson 28 - Create form to add users with Laravel
+
+
 
 
 
