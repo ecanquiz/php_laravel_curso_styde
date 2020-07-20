@@ -407,6 +407,8 @@ $ vendor/bin/phpunit
 
 $ vendor/bin/phpunit --filter the_name_is_required
 
+Lesson 30 - Show validation error messages with Laravel
+
 
 
 

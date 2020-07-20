@@ -59,6 +59,10 @@ class UserController extends Controller
 
     public function store()
     {
+
+//        return redirect('usuarios/nuevo')->withInput();
+//        return redirect('usuarios/nuevo');
+          
 //        $data = request()->only(['name', 'email', 'password']);
 //        $data = request()->all();
         $data = request()->validate([
@@ -67,6 +71,8 @@ class UserController extends Controller
             'password' => 'required',
         ],[
             'name.required' => 'El campo nombre es obligatorio',
+            'email.required' => 'El campo correo eletrónico es obligatorio',
+            'password.required' => 'El campo contraseña es obligatorio'
         ]);
 
 
