@@ -65,14 +65,21 @@ class UserController extends Controller
           
 //        $data = request()->only(['name', 'email', 'password']);
 //        $data = request()->all();
+
+//        Unlike request()->all(), request()->validate([]) returns only the fields that are in the validation array,
+//        so they do not include any rules.
         $data = request()->validate([
             'name' => 'required',
-            'email' => 'required',
-            'password' => 'required',
+            //'email' => 'required|email',
+            'email' => ['required', 'email', 'unique:users,email'],
+            'password' => ['required', 'min:6'],
         ],[
             'name.required' => 'El campo nombre es obligatorio',
             'email.required' => 'El campo correo eletrónico es obligatorio',
-            'password.required' => 'El campo contraseña es obligatorio'
+            'email.email' => 'El campo correo eletrónico debe ser válido',
+            'email.unique' => 'Ya existe un usuario con ese email',
+            'password.required' => 'El campo contraseña es obligatorio',
+            'password.min' => 'La clave debe ser mínimo de 6 caracteres',
         ]);
 
 

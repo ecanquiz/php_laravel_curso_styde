@@ -122,4 +122,90 @@ class UsersModuleTest extends TestCase
         
     }
 
+    /** @test */
+    public function the_email_is_required()
+    {
+        $this->from('/usuarios/nuevo')
+            ->post('/usuarios/',[
+                'name' => 'Ernesto Canquiz',
+                'email' => '',
+                'password' => '123456'        
+            ])
+            ->assertRedirect('usuarios/nuevo')
+            ->assertSessionHasErrors([
+                  'email'=>'El campo correo eletrónico es obligatorio'
+            ]);
+        $this->assertEquals(0, User::count());        
+    }
+
+    /** @test */
+    public function the_email_must_be_valid()
+    {
+        $this->from('/usuarios/nuevo')
+            ->post('/usuarios/',[
+                'name' => 'Ernesto Canquiz',
+                'email' => 'correo-no-valido',
+                'password' => '123456'        
+            ])
+            ->assertRedirect('usuarios/nuevo')
+            ->assertSessionHasErrors([
+                'email' =>'El campo correo eletrónico debe ser válido'
+            ]);
+        $this->assertEquals(0, User::count());        
+    }
+
+    /** @test */
+    public function the_email_must_be_unique()
+    {
+        //$this->withoutExceptionHandling();
+        $user = factory(User::class)->create([
+            'email' => 'cumacos@gmail.com',
+        ]);
+
+        $this->from('/usuarios/nuevo')
+            ->post('/usuarios/',[
+                'name' => 'Ernesto Canquiz',
+                'email' => 'cumacos@gmail.com',
+                'password' => '123456'        
+            ])
+            ->assertRedirect('usuarios/nuevo')
+            ->assertRedirect('usuarios/nuevo')
+            ->assertSessionHasErrors([
+                'email' =>'Ya existe un usuario con ese email'
+            ]);
+        $this->assertEquals(1, User::count());        
+    }
+
+    /** @test */
+    public function the_password_is_required()
+    {
+        $this->from('/usuarios/nuevo')
+            ->post('/usuarios/',[
+                'name' => 'Ernesto Canquiz',
+                'email' => 'cumacos@gmail.com',
+                'password' => ''        
+            ])
+            ->assertRedirect('usuarios/nuevo')
+            ->assertSessionHasErrors([
+                  'password'=>'El campo contraseña es obligatorio'
+            ]);
+        $this->assertEquals(0, User::count());        
+    }
+
+    /** @test */
+    public function the_password_must_be_min_6_chrs()
+    {
+        $this->from('/usuarios/nuevo')
+            ->post('/usuarios/',[
+                'name' => 'Ernesto Canquiz',
+                'email' => 'cumacos@gmail.com',
+                'password' => '123'        
+            ])
+            ->assertRedirect('usuarios/nuevo')
+            ->assertSessionHasErrors([
+                  'password'=>'La clave debe ser mínimo de 6 caracteres'
+            ]);
+        $this->assertEquals(0, User::count());        
+    }
+
 }

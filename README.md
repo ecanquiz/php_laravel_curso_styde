@@ -409,6 +409,10 @@ $ vendor/bin/phpunit --filter the_name_is_required
 
 Lesson 30 - Show validation error messages with Laravel
 
+Lesson 31 - Using multiple validation rules in Laravel
+
+$ vendor/bin/phpunit
+
 
 
 
