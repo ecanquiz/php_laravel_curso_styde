@@ -413,6 +413,14 @@ Lesson 31 - Using multiple validation rules in Laravel
 
 $ vendor/bin/phpunit
 
+Lesson 32 - Laravel user editing form
+
+$ vendor/bin/phpunit
+
+$ vendor/bin/phpunit --filter it_loads_the_edit_usuer_page
+
+# chmod -R 777 document_root
+
 
 
 

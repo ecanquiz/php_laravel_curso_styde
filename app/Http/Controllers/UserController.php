@@ -98,6 +98,11 @@ class UserController extends Controller
         return redirect('usuarios');
     }
 
+    public function edit(User $user)
+    {
+        return view('users.edit', ['user' => $user]);
+    }
+
 }
 
 
