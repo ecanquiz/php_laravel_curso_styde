@@ -419,7 +419,13 @@ $ vendor/bin/phpunit
 
 $ vendor/bin/phpunit --filter it_loads_the_edit_usuer_page
 
-# chmod -R 777 document_root
+$ chmod -R 777 document_root
+
+Lesson 33 - User Update with Laravel (TDD)
+
+$ vendor/bin/phpunit --filter it_updates_a_user
+
+$ vendor/bin/phpunit
 
 
 

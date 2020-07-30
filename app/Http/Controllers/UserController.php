@@ -94,13 +94,27 @@ class UserController extends Controller
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
-        //return redirect()->route('users.index');
+//        return redirect()->route('users.index');
         return redirect('usuarios');
     }
 
     public function edit(User $user)
     {
         return view('users.edit', ['user' => $user]);
+    }
+
+    public function update(User $user)
+    {
+//        $user->update(request()->all());
+        $data = request()->all();
+        $data['password'] = bcrypt($data['password']);
+        $user->update($data);
+
+//        return redirect("usuarios/{$user->id}");
+//        return redirect()->router('users.show', ['user' => $user->id]);
+        return redirect()->route('users.show', ['user' => $user]);
+        
+        
     }
 
 }

@@ -53,7 +53,8 @@ class UsersModuleTest extends TestCase
             'email' => 'cumacos@gmail.com',
         ]);
 
-        $this->get('/usuarios/' . $user->id)
+        //$this->get('/usuarios/' . $user->id) // usuario/5
+        $this->get("/usuarios/{$user->id}") 
             ->assertStatus(200)
             ->assertSee('Ernesto Canquiz')
             ->assertSee('cumacos@gmail.com');
@@ -211,7 +212,7 @@ class UsersModuleTest extends TestCase
     /** @test */
     public function it_loads_the_edit_usuer_page()
     {
-//        $this->withoutExceptionHandling();
+        $this->withoutExceptionHandling();
 
         $user = factory(User::class)->create();
 //      usuarios/editar?id=5
@@ -224,6 +225,27 @@ class UsersModuleTest extends TestCase
             ->assertViewHas('user', function ($viewUser) use ($user) {
                 return $viewUser->id === $user->id;
             });
+
+    }
+
+    /** @test */
+    public function it_updates_a_user()
+    {
+
+        $user = factory(User::class)->create();
+
+        //$this->withoutExceptionHandling();
+
+        $this->put("/usuarios/{$user->id}",[
+            'name' => 'Ernesto Canquiz',
+            'email' => 'cumacos@gmail.com',
+            'password' => '123456'        
+        ])->assertRedirect("/usuarios/{$user->id}"); //])->assertRedirect(route('users.index'));
+        
+        $this->assertDatabaseHas('users', [  //$this->assertCredentials([
+            'name' => 'Ernesto Canquiz',
+            'email' => 'cumacos@gmail.com',
+        ]);
 
     }
 
