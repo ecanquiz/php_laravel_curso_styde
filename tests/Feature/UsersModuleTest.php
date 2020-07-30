@@ -7,7 +7,7 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\DB;
 use App\Models\Profession;
-use App\Models\User;
+use App\User;
 
 class UsersModuleTest extends TestCase
 {
@@ -90,9 +90,11 @@ class UsersModuleTest extends TestCase
             'password' => '123456'        
         ])->assertRedirect('usuarios'); //])->assertRedirect(route('users.index'));
         
-        $this->assertDatabaseHas('users', [  //$this->assertCredentials([
+        //$this->assertDatabaseHas('users', [  
+        $this->assertCredentials([
             'name' => 'Ernesto Canquiz',
             'email' => 'cumacos@gmail.com',
+            'password' => '123456'        
         ]);
 
     }
@@ -240,11 +242,12 @@ class UsersModuleTest extends TestCase
             'name' => 'Ernesto Canquiz',
             'email' => 'cumacos@gmail.com',
             'password' => '123456'        
-        ])->assertRedirect("/usuarios/{$user->id}"); //])->assertRedirect(route('users.index'));
-        
-        $this->assertDatabaseHas('users', [  //$this->assertCredentials([
+        ])->assertRedirect("/usuarios/{$user->id}"); //])->assertRedirect(route('users.index'));      
+
+        $this->assertCredentials([
             'name' => 'Ernesto Canquiz',
             'email' => 'cumacos@gmail.com',
+            'password' => '123456'        
         ]);
 
     }

@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use App\Models\Profession;
-use App\Models\User;
+use App\User;
 
 
 class UserSeeder extends Seeder
