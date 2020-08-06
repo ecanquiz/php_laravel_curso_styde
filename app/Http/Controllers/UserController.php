@@ -111,23 +111,20 @@ class UserController extends Controller
             'name' => 'required',
 //            'email' => ['required', 'email', 'unique:users,email'],
             'email' => 'required|email',
-            'password' => ['required', 'min:6'],
-        ],[
-            'name.required' => 'El campo nombre es obligatorio',
-            'email.required' => 'El campo correo eletrónico es obligatorio',
-            'email.email' => 'El campo correo eletrónico debe ser válido',
-//            'email.unique' => 'Ya existe un usuario con ese email',
-            'password.required' => 'El campo contraseña es obligatorio',
-            'password.min' => 'La clave debe ser mínimo de 6 caracteres',
+            'password' => ''
         ]);
 
-        $data['password'] = bcrypt($data['password']);
-        $user->update($data);
+        if ($data['password'] != null) {
+            $data['password'] = bcrypt($data['password']);
+	} else {
+	    unset($data['password']);
+	}
 
-//        return redirect("usuarios/{$user->id}");
+	$user->update($data);
+	
+//	  return redirect("usuarios/{$user->id}");
 //        return redirect()->router('users.show', ['user' => $user->id]);
         return redirect()->route('users.show', ['user' => $user]);
-        
         
     }
 

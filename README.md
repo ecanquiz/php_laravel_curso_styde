@@ -433,4 +433,10 @@ $ vendor/bin/phpunit --filter the_name_is_required_when_updating_a_user
 
 $ vendor/bin/phpunit
 
+Lesson 35 - Optional password field in Laravel
+
+$ vendor/bin/phpunit --filter the_name_is_optional_when_updating_a_user
+
+$ vendor/bin/phpunit
+
 
