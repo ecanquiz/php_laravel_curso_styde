@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-//use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\Rule;
+// use Illuminate\Support\Facades\DB;
 use App\Models\Profession;
 use App\User;
 
@@ -12,40 +13,39 @@ class UserController extends Controller
     public function index()
     {
 
-/*
+        /*
         if (request()->has('empty')) {
            $users = [];
         }else {
             $users = [ 'Joel', 'Ellie', 'Tess', 'Tommy', 'Byll' ];
         }
-*/
-//        $users = DB::table('users')->get();
+        */
+        // $users = DB::table('users')->get();
         $users = User::all();
-//        dd($users);
+        // dd($users);
 
         $title = 'Listado de usuarios';
 
-//        return view('users.index')
-//            ->with('users', User::all())
-//            ->with('title','Listado de usuarios');
-//        return view('users.index')->with('users', $users);
+        // return view('users.index')
+        //     ->with('users', User::all())
+        //     ->with('title','Listado de usuarios');
+        // return view('users.index')->with('users', $users);
         return view('users.index', compact('title','users'));
 
     }
 
-/*
+    /*
     public function show($id)
     {
-//        $user = User::find($id);
-//        if ( $user== null) {
-//            return response()->view('errors.404', [], 404);
-//        }
+        // $user = User::find($id);
+        // if ( $user== null) {
+        //     return response()->view('errors.404', [], 404);
+        // }
 
         $user = User::findOrFail($id);
-
         return view('users.show', compact('user'));
     }
-*/
+    */
 
     public function show(User $user)
     {
@@ -60,14 +60,14 @@ class UserController extends Controller
     public function store()
     {
 
-//        return redirect('usuarios/nuevo')->withInput();
-//        return redirect('usuarios/nuevo');
+        // return redirect('usuarios/nuevo')->withInput();
+        // return redirect('usuarios/nuevo');
           
-//        $data = request()->only(['name', 'email', 'password']);
-//        $data = request()->all();
+        // $data = request()->only(['name', 'email', 'password']);
+        // $data = request()->all();
 
-//        Unlike request()->all(), request()->validate([]) returns only the fields that are in the validation array,
-//        so they do not include any rules.
+        // Unlike request()->all(), request()->validate([]) returns only the fields that are in the validation array,
+        // so they do not include any rules.
         $data = request()->validate([
             'name' => 'required',
             //'email' => 'required|email',
@@ -83,18 +83,18 @@ class UserController extends Controller
         ]);
 
 
-//        if (empty($data['name'])) {
-//             return redirect('usuarios/nuevo')->withErrors([
-//                 'name' => 'El campo nombre es obligatorio'
-//             ]);
-//        }
+        // if (empty($data['name'])) {
+        //     return redirect('usuarios/nuevo')->withErrors([
+        //         'name' => 'El campo nombre es obligatorio'
+        //     ]);
+        // }
 
         $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
-//        return redirect()->route('users.index');
+        // return redirect()->route('users.index');
         return redirect('usuarios');
     }
 
@@ -105,12 +105,13 @@ class UserController extends Controller
 
     public function update(User $user)
     {
-//        $user->update(request()->all());
-//        $data = request()->all();
+        // $user->update(request()->all());
+        // $data = request()->all();
         $data = request()->validate([
             'name' => 'required',
-//            'email' => ['required', 'email', 'unique:users,email'],
-            'email' => 'required|email',
+            // 'email' => 'required|email|unique:users,email,' . $user->id,
+            // 'email' => ['required', 'email', 'unique:users,email,' . $user->id],
+	    'email' => ['required', 'email', Rule::unique('users')->ignore($user->id)],
             'password' => ''
         ]);
 
@@ -122,8 +123,8 @@ class UserController extends Controller
 
 	$user->update($data);
 	
-//	  return redirect("usuarios/{$user->id}");
-//        return redirect()->router('users.show', ['user' => $user->id]);
+        // return redirect("usuarios/{$user->id}");
+        // return redirect()->router('users.show', ['user' => $user->id]);
         return redirect()->route('users.show', ['user' => $user]);
         
     }

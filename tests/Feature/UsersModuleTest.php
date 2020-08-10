@@ -103,9 +103,9 @@ class UsersModuleTest extends TestCase
     public function the_name_is_required()
     {
 
-//        $this->withoutExceptionHandling(); //This must be disabled for Laravel to validate exceptions.
+        //$this->withoutExceptionHandling(); //This must be disabled for Laravel to validate exceptions.
 
-//        $this->post('/usuarios/',[
+        //$this->post('/usuarios/',[
         $this->from('/usuarios/nuevo')
             ->post('/usuarios/',[
                 'name' => '',
@@ -119,9 +119,9 @@ class UsersModuleTest extends TestCase
 
         $this->assertEquals(0, User::count());
 
-//        $this->assertDatabaseMissing('users', [
-//            'email' => 'cumacos@gmail.com'
-//        ]);
+        //$this->assertDatabaseMissing('users', [
+        //    'email' => 'cumacos@gmail.com'
+        //]);
         
     }
 
@@ -217,8 +217,8 @@ class UsersModuleTest extends TestCase
         $this->withoutExceptionHandling();
 
         $user = factory(User::class)->create();
-//      usuarios/editar?id=5
-//        $this->get('/usuarios/editar', ['id' => $user->id])
+        // usuarios/editar?id=5
+        // $this->get('/usuarios/editar', ['id' => $user->id])
         $this->get("/usuarios/{$user->id}/editar") //usuarios/5/editar
             ->assertStatus(200)
             ->assertViewIs('users.edit')
@@ -236,7 +236,7 @@ class UsersModuleTest extends TestCase
 
         $user = factory(User::class)->create();
 
-        //$this->withoutExceptionHandling();
+        // $this->withoutExceptionHandling();
 
         $this->put("/usuarios/{$user->id}",[
             'name' => 'Ernesto Canquiz',
@@ -256,7 +256,7 @@ class UsersModuleTest extends TestCase
     public function the_name_is_required_when_updating_the_user()
     {
 
-//        $this->withoutExceptionHandling();
+        // $this->withoutExceptionHandling();
         $this->withExceptionHandling();
 
         $user = factory(User::class)->create();
@@ -278,8 +278,8 @@ class UsersModuleTest extends TestCase
     public function the_email_must_be_valid_when_updating_the_user()
     {
 
-//    $this->withoutExceptionHandling();
-        $this->withExceptionHandling();
+       // $this->withoutExceptionHandling();
+       $this->withExceptionHandling();
 
         $user = factory(User::class)->create(['name'=> 'Nombre inicial']);
 
@@ -299,9 +299,15 @@ class UsersModuleTest extends TestCase
     /** @test */
     public function the_email_must_be_unique_when_updating_the_user()
     {
-        self::markTestIncomplete();
-	return;
+        //self::markTestIncomplete(); // This method causes the test to be declared incomplete.
+        //return;
+
         //$this->withoutExceptionHandling();
+
+        factory(User::class)->create([
+            'email' => 'existing-email@example.com',
+        ]);
+
         $user = factory(User::class)->create([
             'email' => 'cumacos@gmail.com',
         ]);
@@ -309,15 +315,12 @@ class UsersModuleTest extends TestCase
         $this->from("/usuarios/{$user->id}/editar")
             ->put("/usuarios/{$user->id}",[
                 'name' => 'Ernesto Canquiz',
-                'email' => 'cumacos@gmail.com',
+                'email' => 'existing-email@example.com',
                 'password' => '123456'        
             ])
-            ->assertRedirect('usuarios/nuevo')
-            ->assertRedirect('usuarios/nuevo')
-            ->assertSessionHasErrors([
-                'email' =>'Ya existe un usuario con ese email'
-            ]);
-        $this->assertEquals(1, User::count());        
+            ->assertRedirect("/usuarios/{$user->id}/editar")
+            ->assertSessionHasErrors(['email']);
+            //     
     }
 
     /** @test */
@@ -343,4 +346,26 @@ class UsersModuleTest extends TestCase
         ]);
     }
 
+    /** @test */
+    public function the_users_email_can_stay_the_same_when_updating_the_user()
+    {
+        $user = factory(User::class)->create([
+	    'email' => 'cumacos@gmail.com'
+        ]);
+
+        $this->from("/usuarios/{$user->id}/editar")
+            ->put("/usuarios/{$user->id}",[
+                'name' => 'Ernesto Canquiz',
+                'email' => 'cumacos@gmail.com',
+                'password' => '12345678'        
+            ])
+            ->assertRedirect("/usuarios/{$user->id}");  //(users.show)
+
+        $this->assertDatabaseHas('users', [
+            'name' => 'Ernesto Canquiz',
+	    'email' => 'cumacos@gmail.com'
+        ]);
+    }
+
 }
+

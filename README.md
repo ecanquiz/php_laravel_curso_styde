@@ -439,4 +439,13 @@ $ vendor/bin/phpunit --filter the_name_is_optional_when_updating_a_user
 
 $ vendor/bin/phpunit
 
+Lesson 36 - Validate that the email is unique when editing a user with Laravel
+
+$ vendor/bin/phpunit --filter the_email_must_be_unique_when_updating_the_user
+
+$ vendor/bin/phpunit
+
+
+
+
 
