@@ -445,6 +445,17 @@ $ vendor/bin/phpunit --filter the_email_must_be_unique_when_updating_the_user
 
 $ vendor/bin/phpunit
 
+Lesson 37 - Delete records with Laravel and TDD
+
+$ vendor/bin/phpunit --filter it_deletes_a_user
+
+$ vendor/bin/phpunit
+
+vendor/bin/phpunit --testdox
+
+
+
+
 
 
 
