@@ -457,6 +457,13 @@ Lesson 38 - Adding links to the users module
 
 $ vendor/bin/phpunit
 
+Lesson 39 - Add Bootstrap 4 styles to user list in Laravel
+
+$ php artisan migrate:fresh
+
+$ php artisan db:seed
+
+
 
 
 
