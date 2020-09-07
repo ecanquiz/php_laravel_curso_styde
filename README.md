@@ -463,6 +463,10 @@ $ php artisan migrate:fresh
 
 $ php artisan db:seed
 
+Lesson 40 - Add Bootstrap 4 styles to form in Laravel
+
+(End)
+
 
 
 
